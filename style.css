@@ -32,7 +32,7 @@ body {
 .actions > svg {
   width: 2em;
   height: 2em;
-  transition: all 0.3s;
+  transition: all 0.1s;
   margin: 0 15px;
   cursor:pointer;
   
@@ -76,7 +76,6 @@ body {
 .colors > li.active{
   transform: scale(1.3);
   box-shadow: 0 0 5px rgba(0,0,0,0.8);
-  transition: all 0.1s;
 }
 .sizes{
 position: fixed;

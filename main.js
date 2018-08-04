@@ -54,7 +54,7 @@ pen.onclick = function () {
 }
 clera.onclick = function () {
   clera.classList.add('active');
-  context.clearRect(0, 0, xx.width, xx.width);
+  context.clearRect(0, 0, xx.width, xx.height);
   clera.classList.remove('active');
 }
 download.onclick = function () {
@@ -68,18 +68,17 @@ download.onclick = function () {
 /**********************************************************************/
 //自动设置宽高函数
 function autoSetCanvasSize(canvas) {
-  setCanvasSize();
+  setCanvasSize(canvas);
   window.onresize = function () {
-    setCanvasSize();
+    setCanvasSize(canvas);
   };
 
-  function setCanvasSize() {
+  function setCanvasSize(canvas) {
     var pagex = document.documentElement.clientWidth;
     var pagey = document.documentElement.clientHeight;
     //设置属性值不是样式
     canvas.width = pagex;
     canvas.height = pagey;
-    alert("宽："+pagex+"高"+pagey);
   }
 }
 /**********************************************************************/

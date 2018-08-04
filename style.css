@@ -1,27 +1,77 @@
+ul,ol{
+  list-style: none;
+}
+*{
+  margin: 0;
+  padding:0;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
 #xx {
-  background: #DCDCDC;
+  background: #FFF;
   display: block;
   height: 100vh;
 }
 
 body {
-  margin: 0px;
+  overflow: hidden;
 }
 
 .actions {
   position: fixed;
-  bottom: 0;
-  left: 0;
+   top: 0px;
+  left: 0px;
+  padding: 20px;
 }
-
-.actions>#brush {
-  display: none;
+.actions > svg {
+  width: 2em;
+  height: 2em;
+  transition: all 0.3s;
+  margin: 0 20px;
+  cursor:pointer;
+  
 }
-
-.actions.x>#brush {
-  display: inline-block;
+.actions > svg.active {
+  fill:red;
+  transform: scale(1.2);
 }
-
-.actions.x>#eraser {
-  display: none;
+.colors {
+  position: fixed;
+  top: 60px;
+  left: 25px;
+  transition: all 0.3s;
+}
+.colors > li{
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  margin:  20px 0;
+  border-radius: 50%;
+  cursor:pointer;
+}
+.colors > li.red {
+  background: red;
+}
+.colors > li.green {
+  background: green;
+}
+.colors > li.blue {
+  background: blue;
+}
+.colors > li.yellow {
+  background: yellow;
+}
+.colors > li.purple {
+  background: purple;
+}
+.colors > li.active{
+  transform: scale(1.3);
+  box-shadow: 0 0 5px rgba(0,0,0,0.8);
+  transition: all 0.3s;
 }

@@ -1,23 +1,45 @@
 var xx = document.getElementById('xx');
+var context = xx.getContext('2d');
 var actions = document.getElementById('actions');
+var pen = document.getElementById('pen');
+var eraser = document.getElementById('eraser');
+var color = document.getElementsByClassName('colors')[0];
 //自动设置高宽
 autoSetCanvasSize(xx);
 //监听鼠标事件
 ListenToUser(xx);
 
 /**********************************************************************/
-
+//橡皮状态
 var usingEraser = false;
-eraser.onclick = function () {
+//循环绑定事件
+  for(var i=0;i<color.children.length;i++){
+    color.children[i].onclick = function(e){
+      for(var j=0;j<color.children.length;j++){
+     color.children[j].classList.remove('active');
+    }
+    var penColor  = this.className;
+    this.classList.add('active');
+    context.strokeStyle = penColor;
+    context.fillStyle = penColor;
+    console.log(penColor);
+  }
+  }
+eraser.onclick = function(){
   usingEraser = true;
-  actions.className = "actions x";
-  console.log(brush.display);
-};
-brush.onclick = function () {
+  eraser.classList.add('active');
+  pen.classList.remove('active');
+  console.log(usingEraser);
+
+}
+pen.onclick = function(){
   usingEraser = false;
-  actions.className = "actions";
-};
+  pen.classList.add('active');
+  eraser.classList.remove('active');
+  console.log(usingEraser);
+}
 /**********************************************************************/
+//自动设置宽高函数
 function autoSetCanvasSize(canvas) {
   setCanvasSize();
   window.onresize = function () {
@@ -32,10 +54,11 @@ function autoSetCanvasSize(canvas) {
     canvas.height = pagey;
   }
 }
-
+/**********************************************************************/
+//监听用户动作
 function ListenToUser(canvas) {
-  var context = canvas.getContext('2d');
-  var paining = false;
+  //画笔状态
+var paining = false;
   var last = {
     x: undefined,
     y: undefined
@@ -47,7 +70,7 @@ function ListenToUser(canvas) {
       var y = a.touches[0].clientY;
       paining = true;
       if (usingEraser) {
-        context.clearRect(x - 5, y - 5, 10, 10);
+        context.clearRect(x - 15, y - 15, 30, 30);
       } else {
         huayuan(x,y,2);
         //记录鼠标按下的坐标
@@ -74,8 +97,6 @@ function ListenToUser(canvas) {
     }
     canvas.ontouchend = function () {
       paining = false;
-      usingEraser = false;
-      actions.className = "actions";
     }
 
   } else {
@@ -112,21 +133,17 @@ function ListenToUser(canvas) {
     };
     canvas.onmouseup = function (aa) {
       paining = false;
-      usingEraser = false;
-      actions.className = "actions";
 
     };
   }
   function huayuan(x, y, rudius) {
     context.beginPath();
-    context.fillStyle = "blank";
     context.arc(x, y, rudius, Math.PI * 2, false);
     context.fill();
   }
 
   function huaxian(x1, y1, x2, y2) {
     context.beginPath();
-    context.strokeStyle = "blank";
     context.lineWidth = 4;
     context.moveTo(x1, y1); //起点
     context.lineTo(x2, y2); //终点

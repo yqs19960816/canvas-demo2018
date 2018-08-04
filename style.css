@@ -16,7 +16,9 @@ ul,ol{
 #xx {
   background: #DCDCDC;
   display: block;
-  height: 100vh;
+ position: fixed;
+ top: 0;
+ left: 0;
 }
 
 body {

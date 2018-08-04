@@ -22,10 +22,6 @@ thin.onclick = function () {
 thick.onclick = function () {
   lineWidth = 10;
 }
-//阻止页面滚动
-document.body.ontouchstart = function(e){
-  e.preventDefault();
-}
 //循环绑定事件
 for (var i = 0; i < color.children.length; i++) {
   color.children[i].onclick = function (e) {

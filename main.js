@@ -35,18 +35,27 @@ for (var i = 0; i < color.children.length; i++) {
     console.log(penColor);
   }
 }
+
 eraser.onclick = function () {
   usingEraser = true;
   eraser.classList.add('active');
   pen.classList.remove('active');
   clera.classList.remove('active');
-
+  for (var j = 0; j < color.children.length; j++) {
+    color.children[j].classList.remove('active');
+  }
 }
 pen.onclick = function () {
   usingEraser = false;
   pen.classList.add('active');
   eraser.classList.remove('active');
   clera.classList.remove('active');
+  for (var j = 0; j < color.children.length; j++) {
+    color.children[j].classList.remove('active');
+  }
+  color.children[0].classList.add('active');
+  context.strokeStyle = "black";
+  context.fillStyle = "black";
 }
 clera.onclick = function () {
   clera.classList.add('active');
@@ -168,6 +177,7 @@ function ListenToUser(canvas) {
   }
 
   function huaxian(x1, y1, x2, y2) {
+    context.lineCap = "round";
     context.beginPath();
     context.lineWidth = lineWidth;
     context.moveTo(x1, y1); //起点
